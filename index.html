@@ -64,6 +64,35 @@
             right: auto;
             left: 1.5rem;
         }
+
+        /* --- Filter Styles --- */
+        .filtered-out {
+            opacity: 0.2;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .item-visible { /* Helper class to ensure items return to full opacity */
+            opacity: 1;
+            transition: opacity 0.3s ease-in-out;
+        }
+        /* Ensure active filter button has distinct styling */
+        .filter-btn.active-filter {
+            background-color: #14b8a6; /* teal-500 */
+            color: white;
+        }
+        .filter-btn:not(.active-filter) {
+             background-color: #e2e8f0; /* slate-200 */
+             color: #334155; /* slate-700 */
+        }
+        html[dir="dark"] .filter-btn:not(.active-filter) {
+            background-color: #334155; /* slate-700 */
+            color: #cbd5e1; /* slate-300 */
+        }
+        html[dir="dark"] .filter-btn.active-filter {
+            background-color: #14b8a6; /* teal-500 */
+            color: white;
+        }
+
+
     </style>
 </head>
 <body class="bg-slate-50 dark:bg-slate-900 text-slate-700 dark:text-slate-300">
@@ -102,13 +131,13 @@
 
         <section id="hero" class="text-center py-20" data-aos="fade-up">
             <!-- ⬇️⬇️⬇️ غيّر رابط صورتك الشخصية هنا ⬇️⬇️⬇️ -->
-            <img src="https://placehold.co/128x128/14b8a6/FFFFFF?text=GW" alt="صورة جمال وهبة" class="w-32 h-32 mx-auto rounded-full mb-6 ring-4 ring-offset-4 ring-offset-slate-50 dark:ring-offset-slate-900 ring-teal-500 object-cover">
-            <h1 class="text-5xl font-extrabold text-slate-800 dark:text-white mb-4" data-key="name"></h1>
+            <img src="https://placehold.co/128x128/14b8a6/FFFFFF?text=GW" alt="صورة جمال وهبة" data-key="hero_alt_text" class="w-32 h-32 mx-auto rounded-full mb-6 ring-4 ring-offset-4 ring-offset-slate-50 dark:ring-offset-slate-900 ring-teal-500 object-cover">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-800 dark:text-white mb-4" data-key="name"></h1>
             <p class="text-xl text-slate-600 dark:text-slate-400 font-semibold mb-6" data-key="hero_subtitle"></p>
             <div class="flex justify-center items-center space-x-6 rtl:space-x-reverse">
-                <a href="mailto:GamalWahbh@hotmail.com" class="text-slate-500 hover:text-teal-500 transition-colors" title="Email"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg></a>
-                <a href="https://linkedin.com/in/gamal-wahba" target="_blank" class="text-slate-500 hover:text-teal-500 transition-colors" title="LinkedIn"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
-                <a href="tel:+201020760589" class="text-slate-500 hover:text-teal-500 transition-colors" title="Phone"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg></a>
+                <a href="mailto:GamalWahbh@hotmail.com" class="text-slate-500 hover:text-teal-500 transition-colors" title="Email" aria-label="Email"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg></a>
+                <a href="https://linkedin.com/in/gamal-wahba" target="_blank" class="text-slate-500 hover:text-teal-500 transition-colors" title="LinkedIn" aria-label="LinkedIn"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+                <a href="tel:+201020760589" class="text-slate-500 hover:text-teal-500 transition-colors" title="Phone" aria-label="Phone"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg></a>
             </div>
         </section>
 
@@ -121,9 +150,18 @@
             </div>
         </section>
 
+        <!-- Filter Buttons Section -->
+        <div class="text-center my-8" data-aos="fade-up">
+            <h3 class="text-xl font-semibold mb-4 text-slate-800 dark:text-white" data-key="qualifications_filter_title"></h3>
+            <button data-filter-tag="all" class="filter-btn active-filter bg-teal-500 text-white font-medium py-2 px-4 rounded-full mx-1 my-1 transition-colors" data-key="filter_show_all"></button>
+            <button data-filter-tag="customer-service" class="filter-btn bg-slate-200 dark:bg-slate-700 hover:bg-teal-500 hover:text-white text-slate-700 dark:text-slate-300 font-medium py-2 px-4 rounded-full mx-1 my-1 transition-colors" data-key="filter_customer_service"></button>
+            <button data-filter-tag="sales" class="filter-btn bg-slate-200 dark:bg-slate-700 hover:bg-teal-500 hover:text-white text-slate-700 dark:text-slate-300 font-medium py-2 px-4 rounded-full mx-1 my-1 transition-colors" data-key="filter_sales"></button>
+            <button data-filter-tag="management" class="filter-btn bg-slate-200 dark:bg-slate-700 hover:bg-teal-500 hover:text-white text-slate-700 dark:text-slate-300 font-medium py-2 px-4 rounded-full mx-1 my-1 transition-colors" data-key="filter_management"></button>
+        </div>
+
         <section id="skills" class="py-20 bg-slate-100 dark:bg-slate-800 rounded-2xl" data-aos="zoom-in-up">
             <h2 class="text-3xl font-bold text-center mb-12 text-slate-800 dark:text-white" data-key="skills_title"></h2>
-            <div id="skills-grid" class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto"></div>
+            <div id="skills-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 max-w-5xl mx-auto"></div>
         </section>
 
         <section id="experience" class="py-20">
@@ -136,7 +174,7 @@
              <div class="max-w-4xl mx-auto grid md:grid-cols-1 lg:grid-cols-2 gap-8">
                 <div data-aos="fade-up">
                     <h3 class="text-2xl font-bold mb-4 text-teal-600 dark:text-teal-400" data-key="education_subtitle"></h3>
-                     <div class="bg-white dark:bg-slate-700 p-6 rounded-xl shadow-md h-full flex flex-col justify-center">
+                     <div class="bg-white dark:bg-slate-700 p-6 rounded-xl shadow-md h-full flex flex-col justify-center hover:shadow-xl transition-shadow duration-300">
                         <p class="text-sm text-slate-500 dark:text-slate-400" data-key="education_date"></p>
                         <h4 class="text-lg font-bold text-slate-800 dark:text-white mt-1" data-key="education_degree"></h4>
                         <p class="text-md text-slate-600 dark:text-slate-300" data-key="education_university"></p>
@@ -159,6 +197,16 @@
                     <h3 class="text-2xl font-bold mb-4 text-teal-600 dark:text-teal-400" data-key="qualifications_title"></h3>
                     <ul id="qualifications-list" class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md h-full space-y-3 list-disc ltr:list-disc rtl:list-['-_'] pl-5 rtl:pr-5"></ul>
                 </div>
+            </div>
+        </section>
+
+        <section id="ai-chatbot-placeholder" class="py-10 text-center" data-aos="fade-up">
+            <div class="container mx-auto px-6">
+                <h3 class="text-2xl font-bold text-slate-800 dark:text-white mb-3" data-key="ai_placeholder_title"></h3>
+                <p class="text-lg text-slate-600 dark:text-slate-400 mb-5" data-key="ai_placeholder_text"></p>
+                <button id="ai-chatbot-button" class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-2 px-6 rounded-full transition-colors text-md inline-block shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                    <span data-key="ai_placeholder_button_text"></span> &#x1F916; <!-- Robot emoji -->
+                </button>
             </div>
         </section>
 
@@ -194,25 +242,31 @@
                 name_brand: "جمال وهبة",
                 nav_about: "نبذة عني", nav_experience: "الخبرات", nav_skills: "المهارات", nav_education: "التعليم", nav_additional: "معلومات إضافية", nav_contact: "تواصل معي",
                 hero_subtitle: "خبير خدمة عملاء ومبيعات وضيافة",
+                hero_alt_text: "صورة جمال وهبة الشخصية",
                 about_title: "نبذة عني",
                 about_text: "محترف مرن ومتحمس، أمتلك خبرة عملية تزيد عن 3 سنوات في خدمة العملاء والمبيعات والضيافة وقطاع الأغذية والمشروبات. ماهر في التفاعل المباشر مع العملاء، تقديم الخدمات، تنسيق الفرق، وعمليات نقاط البيع. معروف بتقديم معلومات دقيقة عن المنتجات والحفاظ على معايير الجودة والتكيف السريع مع المهام الجديدة. أسعى حاليًا للحصول على درجة البكالوريوس في إدارة الأعمال ومستعد لفرص عمل بدوام كامل للمساهمة بمهاراتي والنمو مهنياً.",
+                qualifications_filter_title: "تصفية حسب الاهتمام:",
+                filter_customer_service: "خدمة العملاء",
+                filter_sales: "المبيعات",
+                filter_management: "الإدارة",
+                filter_show_all: "عرض الكل",
                 skills_title: "المهارات الأساسية",
                 skills: [
-                    { text: "التفاعل مع العملاء وتميز الخدمة", icon: `<svg class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>`},
-                    { text: "تقنيات البيع والبيع الإضافي", icon: `<svg class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>` },
-                    { text: "أنظمة نقاط البيع وإدارة النقد", icon: `<svg class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>`},
-                    { text: "عمليات الأغذية والمشروبات", icon: `<svg class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 6H4l2 12h12l2-12zM6 6V4a2 2 0 012-2h8a2 2 0 012 2v2"></path><path d="M15 14a3 3 0 11-6 0 3 3 0 016 0z" stroke-width="1.5"></path></svg>`},
-                    { text: "مراقبة المخزون وتجهيز المتجر", icon: `<svg class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>`},
-                    { text: "المظهر النظيف والسلوك المهني", icon: `<svg class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>`},
-                    { text: "التواصل ثنائي اللغة (عربي/إنجليزي)", icon: `<svg class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9V3m0 18a9 9 0 009-9m-9 9a9 9 0 00-9-9"></path></svg>`},
-                    { text: "القدرة على التكيف والتعاون الجماعي", icon: `<svg class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283-.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>`},
+                    { text: "التفاعل مع العملاء وتميز الخدمة", qualificationTags: ["customer-service"], icon: `<svg aria-hidden="true" class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>`},
+                    { text: "تقنيات البيع والبيع الإضافي", qualificationTags: ["sales"], icon: `<svg aria-hidden="true" class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>` },
+                    { text: "أنظمة نقاط البيع وإدارة النقد", icon: `<svg aria-hidden="true" class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>`},
+                    { text: "عمليات الأغذية والمشروبات", icon: `<svg aria-hidden="true" class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 6H4l2 12h12l2-12zM6 6V4a2 2 0 012-2h8a2 2 0 012 2v2"></path><path d="M15 14a3 3 0 11-6 0 3 3 0 016 0z" stroke-width="1.5"></path></svg>`},
+                    { text: "مراقبة المخزون وتجهيز المتجر", icon: `<svg aria-hidden="true" class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>`},
+                    { text: "المظهر النظيف والسلوك المهني", icon: `<svg aria-hidden="true" class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>`},
+                    { text: "التواصل ثنائي اللغة (عربي/إنجليزي)", icon: `<svg aria-hidden="true" class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9V3m0 18a9 9 0 009-9m-9 9a9 9 0 00-9-9"></path></svg>`},
+                    { text: "القدرة على التكيف والتعاون الجماعي", qualificationTags: ["management"], icon: `<svg aria-hidden="true" class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283-.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>`},
                 ],
                 experience_title: "الخبرة المهنية",
                 experience: [
-                    { date: "أبريل 2024 - حالي", title: "عضو فريق خدمة عملاء", company: "ماكدونالدز مصر - طنطا", description: "خدمة أكثر من 100 عميل يوميًا في ورديات سريعة الوتيرة، وضمان دقة الطلبات ورضا العملاء. تشغيل أنظمة نقاط البيع لمعالجة المعاملات والتعاملات النقدية بكفاءة. الالتزام الصارم بمعايير سلامة الأغذية والنظافة. التعاون مع الفريق لتبسيط العمليات خلال ساعات الذروة." },
-                    { date: "يناير 2021 - نوفمبر 2023", title: "مشرف فرع", company: "أبو عوف - طنطا، مصر", description: "الإشراف على العمليات اليومية للمتجر، بما في ذلك جدولة الموظفين وإدارة المخزون وخدمة العملاء. تدريب أكثر من 5 موظفين جدد، مما عزز أداء الفريق وجودة الخدمة. حل شكاوى العملاء على الفور، مما أدى إلى تحسين معدلات الرضا. مراقبة مستويات المخزون لضمان سلاسة العمليات وتقليل الهدر." },
-                    { date: "يونيو 2023 - سبتمبر 2023 (موسمي)", title: "باريستا", company: "ليتشي مصر - مراسي، الساحل الشمالي", description: "إعداد القهوة عالية الجودة والعصائر الطازجة لضيوف المنتجع الفاخر. الحفاظ على منطقة عمل نظيفة ومنظمة، وضمان الكفاءة خلال ساعات الخدمة المزدحمة. تقديم خدمة عملاء شخصية في بيئة راقية." },
-                    { date: "يناير 2023 - يونيو 2023", title: "باريستا", company: "لا بوار - مصر", description: "تحضير المشروبات القائمة على الإسبريسو مع الالتزام بمعايير العلامة التجارية وتفضيلات العملاء. إدارة ساعات الذروة ذات الحجم الكبير، مع الحفاظ على خدمة سريعة ودقيقة. ضمان الامتثال لبروتوكولات النظافة وتعزيز التفاعلات الإيجابية مع العملاء." },
+                    { date: "أبريل 2024 - حالي", title: "عضو فريق خدمة عملاء", company: "ماكدونالدز مصر - طنطا", qualificationTags: ["customer-service"], description: "خدمة أكثر من 100 عميل يوميًا في ورديات سريعة الوتيرة، وضمان دقة الطلبات ورضا العملاء. تشغيل أنظمة نقاط البيع لمعالجة المعاملات والتعاملات النقدية بكفاءة. الالتزام الصارم بمعايير سلامة الأغذية والنظافة. التعاون مع الفريق لتبسيط العمليات خلال ساعات الذروة." },
+                    { date: "يناير 2021 - نوفمبر 2023", title: "مشرف فرع", company: "أبو عوف - طنطا، مصر", qualificationTags: ["customer-service", "sales", "management"], description: "الإشراف على العمليات اليومية للمتجر، بما في ذلك جدولة الموظفين وإدارة المخزون وخدمة العملاء. تدريب أكثر من 5 موظفين جدد، مما عزز أداء الفريق وجودة الخدمة. حل شكاوى العملاء على الفور، مما أدى إلى تحسين معدلات الرضا. مراقبة مستويات المخزون لضمان سلاسة العمليات وتقليل الهدر." },
+                    { date: "يونيو 2023 - سبتمبر 2023 (موسمي)", title: "باريستا", company: "ليتشي مصر - مراسي، الساحل الشمالي", qualificationTags: ["customer-service"], description: "إعداد القهوة عالية الجودة والعصائر الطازجة لضيوف المنتجع الفاخر. الحفاظ على منطقة عمل نظيفة ومنظمة، وضمان الكفاءة خلال ساعات الخدمة المزدحمة. تقديم خدمة عملاء شخصية في بيئة راقية." },
+                    { date: "يناير 2023 - يونيو 2023", title: "باريستا", company: "لا بوار - مصر", qualificationTags: ["customer-service"], description: "تحضير المشروبات القائمة على الإسبريسو مع الالتزام بمعايير العلامة التجارية وتفضيلات العملاء. إدارة ساعات الذروة ذات الحجم الكبير، مع الحفاظ على خدمة سريعة ودقيقة. ضمان الامتثال لبروتوكولات النظافة وتعزيز التفاعلات الإيجابية مع العملاء." },
                 ],
                 education_title: "التعليم والشهادات",
                 education_subtitle: "التعليم الجامعي",
@@ -237,6 +291,10 @@
                 contact_title: "هل أنت مستعد لإضافة عضو فريق متميز؟",
                 contact_text: "أنا متحمس للمساهمة بخبراتي في بيئة عملكم. لنتحدث!",
                 contact_button: "تواصل معي الآن",
+                ai_placeholder_title: "تعرّف على مساعدي الذكي المستقبلي!",
+                ai_placeholder_text: "قريباً، ستتمكن من طرح أسئلة على 'جمال بوت' حول ملفي الشخصي. هذه الميزة قيد التطوير حاليًا.",
+                ai_placeholder_button_text: "أخبرني عند التوفر (قريباً!)",
+                ai_coming_soon_alert: "هذه الميزة قيد التطوير. يرجى المراجعة لاحقًا!",
                 footer_text: "© 2025 جمال وهبة. تم إنشاؤه بشغف.",
                 footer_email: "البريد الإلكتروني",
             },
@@ -245,25 +303,31 @@
                 name_brand: "Gamal Wahba",
                 nav_about: "About", nav_experience: "Experience", nav_skills: "Skills", nav_education: "Education", nav_additional: "More", nav_contact: "Contact Me",
                 hero_subtitle: "Customer Service, Sales, & Hospitality Professional",
+                hero_alt_text: "Gamal Wahba's profile picture",
                 about_title: "Professional Summary",
                 about_text: "Flexible and motivated professional with over 3 years of hands-on experience in customer service, sales, hospitality, and food & beverage environments. Skilled in direct client interaction, service delivery, team coordination, and point-of-sale operations. Known for providing accurate product or service information, maintaining quality standards, and adapting quickly to new tasks and environments. Currently pursuing a Bachelor’s degree in Business Administration. Open to full-time employment opportunities where I can contribute my skills and grow professionally.",
+                qualifications_filter_title: "Filter by Interest:",
+                filter_customer_service: "Customer Service",
+                filter_sales: "Sales",
+                filter_management: "Management",
+                filter_show_all: "Show All",
                 skills_title: "Core Competencies",
                 skills: [
-                    { text: "Customer Engagement & Service Excellence", icon: `<svg class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>`},
-                    { text: "Sales & Upselling Techniques", icon: `<svg class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>` },
-                    { text: "POS Systems & Cash Management", icon: `<svg class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>`},
-                    { text: "Food & Beverage Operations", icon: `<svg class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 6H4l2 12h12l2-12zM6 6V4a2 2 0 012-2h8a2 2 0 012 2v2"></path><path d="M15 14a3 3 0 11-6 0 3 3 0 016 0z" stroke-width="1.5"></path></svg>`},
-                    { text: "Inventory Monitoring & Store Readiness", icon: `<svg class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>`},
-                    { text: "Clean Appearance & Professional Conduct", icon: `<svg class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>`},
-                    { text: "Bilingual Communication (Arabic & English)", icon: `<svg class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9V3m0 18a9 9 0 009-9m-9 9a9 9 0 00-9-9"></path></svg>`},
-                    { text: "Adaptability & Team Collaboration", icon: `<svg class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283-.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>`},
+                    { text: "Customer Engagement & Service Excellence", qualificationTags: ["customer-service"], icon: `<svg aria-hidden="true" class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>`},
+                    { text: "Sales & Upselling Techniques", qualificationTags: ["sales"], icon: `<svg aria-hidden="true" class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>` },
+                    { text: "POS Systems & Cash Management", icon: `<svg aria-hidden="true" class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>`},
+                    { text: "Food & Beverage Operations", icon: `<svg aria-hidden="true" class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 6H4l2 12h12l2-12zM6 6V4a2 2 0 012-2h8a2 2 0 012 2v2"></path><path d="M15 14a3 3 0 11-6 0 3 3 0 016 0z" stroke-width="1.5"></path></svg>`},
+                    { text: "Inventory Monitoring & Store Readiness", icon: `<svg aria-hidden="true" class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>`},
+                    { text: "Clean Appearance & Professional Conduct", icon: `<svg aria-hidden="true" class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>`},
+                    { text: "Bilingual Communication (Arabic & English)", icon: `<svg aria-hidden="true" class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9V3m0 18a9 9 0 009-9m-9 9a9 9 0 00-9-9"></path></svg>`},
+                    { text: "Adaptability & Team Collaboration", qualificationTags: ["management"], icon: `<svg aria-hidden="true" class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283-.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>`},
                 ],
                 experience_title: "Professional Experience",
                 experience: [
-                    { date: "Apr 2024 – Present", title: "Customer Service Crew Member", company: "McDonald's Egypt – Tanta", description: "Serve 100+ customers daily in fast-paced shifts, ensuring order accuracy and customer satisfaction. Operate POS systems for efficient transaction processing and cash handling. Maintain strict adherence to food safety and cleanliness standards. Collaborate with team to streamline operations during peak hours." },
-                    { date: "Jan 2021 – Nov 2023", title: "Branch Supervisor", company: "Abu Auf – Tanta, Egypt", description: "Oversaw daily store operations, including staff scheduling, inventory management, and customer service. Trained 5+ new employees, enhancing team performance and service quality. Resolved customer complaints promptly, improving satisfaction rates. Monitored stock levels to ensure seamless operations and minimize waste." },
-                    { date: "Jun 2023 – Sep 2023 (Seasonal)", title: "Barista", company: "Lychee Egypt – Marassi, North Coast", description: "Prepared high-quality coffee, smoothies, and juice drinks for luxury resort guests. Maintained a clean and organized bar area, ensuring efficiency during peak service hours. Delivered personalized customer service in an upscale environment." },
-                    { date: "Jan 2023 – Jun 2023", title: "Barista", company: "La Poire – Egypt", description: "Crafted espresso-based beverages adhering to brand standards and customer preferences. Managed high-volume rush hours, maintaining fast and accurate service delivery. Ensured compliance with hygiene protocols and fostered positive customer interactions." },
+                    { date: "Apr 2024 – Present", title: "Customer Service Crew Member", company: "McDonald's Egypt – Tanta", qualificationTags: ["customer-service"], description: "Serve 100+ customers daily in fast-paced shifts, ensuring order accuracy and customer satisfaction. Operate POS systems for efficient transaction processing and cash handling. Maintain strict adherence to food safety and cleanliness standards. Collaborate with team to streamline operations during peak hours." },
+                    { date: "Jan 2021 – Nov 2023", title: "Branch Supervisor", company: "Abu Auf – Tanta, Egypt", qualificationTags: ["customer-service", "sales", "management"], description: "Oversaw daily store operations, including staff scheduling, inventory management, and customer service. Trained 5+ new employees, enhancing team performance and service quality. Resolved customer complaints promptly, improving satisfaction rates. Monitored stock levels to ensure seamless operations and minimize waste." },
+                    { date: "Jun 2023 – Sep 2023 (Seasonal)", title: "Barista", company: "Lychee Egypt – Marassi, North Coast", qualificationTags: ["customer-service"], description: "Prepared high-quality coffee, smoothies, and juice drinks for luxury resort guests. Maintained a clean and organized bar area, ensuring efficiency during peak service hours. Delivered personalized customer service in an upscale environment." },
+                    { date: "Jan 2023 – Jun 2023", title: "Barista", company: "La Poire – Egypt", qualificationTags: ["customer-service"], description: "Crafted espresso-based beverages adhering to brand standards and customer preferences. Managed high-volume rush hours, maintaining fast and accurate service delivery. Ensured compliance with hygiene protocols and fostered positive customer interactions." },
                 ],
                 education_title: "Education & Certifications",
                 education_subtitle: "Education",
@@ -288,6 +352,10 @@
                 contact_title: "Ready to add a dedicated team member?",
                 contact_text: "I'm excited to bring my expertise to your team. Let's talk!",
                 contact_button: "Contact Me Now",
+                ai_placeholder_title: "Meet My Future AI Assistant!",
+                ai_placeholder_text: "Soon, you'll be able to ask 'GamalBot' questions about my profile. This feature is currently under development.",
+                ai_placeholder_button_text: "Notify Me (Coming Soon!)",
+                ai_coming_soon_alert: "This feature is under development. Check back later!",
                 footer_text: "© 2025 Gamal Wahba. Created with passion.",
                 footer_email: "Email",
             }
@@ -299,8 +367,8 @@
         const langSwitcher = document.getElementById('lang-switcher');
         const htmlEl = document.documentElement;
         
-        const skillsGrid = document.getElementById('skills-grid');
-        const experienceTimeline = document.getElementById('experience-timeline');
+        const skillsGrid = document.getElementById('skills-grid'); // Will be parent for skills
+        const experienceTimeline = document.getElementById('experience-timeline'); // Will be parent for exp items
         const certificationsList = document.getElementById('certifications-list');
         const languagesList = document.getElementById('languages-list');
         const qualificationsList = document.getElementById('qualifications-list');
@@ -314,20 +382,65 @@
         // 3. FUNCTIONS
         // -----------------------------------------------------------------
 
+        let currentActiveFilterTag = 'all'; // Variable to store the current active filter
+
+        function applyFilter(selectedTag) {
+            currentActiveFilterTag = selectedTag; // Update current active filter
+            const filterableItems = document.querySelectorAll('[data-qualification-tag]');
+
+            filterableItems.forEach(item => {
+                const itemTags = item.dataset.qualificationTag.split(' ');
+                item.classList.remove('item-visible'); // remove visible helper before logic
+
+                if (selectedTag === 'all' || itemTags.includes(selectedTag)) {
+                    item.classList.remove('filtered-out');
+                    item.classList.add('item-visible');
+                } else {
+                    item.classList.add('filtered-out');
+                    item.classList.remove('item-visible');
+                }
+            });
+
+            // Update active state for buttons
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            filterButtons.forEach(button => {
+                button.classList.remove('active-filter');
+                // Re-apply default non-active styles explicitly to override potential hover states stuck during JS class change
+                if (htmlEl.dir === 'dark') {
+                    button.style.backgroundColor = '#334155'; // slate-700
+                    button.style.color = '#cbd5e1'; // slate-300
+                } else {
+                    button.style.backgroundColor = '#e2e8f0'; // slate-200
+                    button.style.color = '#334155'; // slate-700
+                }
+
+                if (button.dataset.filterTag === selectedTag) {
+                    button.classList.add('active-filter');
+                    button.style.backgroundColor = '#14b8a6'; // teal-500
+                    button.style.color = 'white';
+                }
+            });
+        }
+
         function populateContent(lang) {
             const data = siteData[lang];
             
             document.querySelectorAll('[data-key]').forEach(element => {
                 const key = element.dataset.key;
                 if (data[key]) {
-                    element.innerHTML = data[key];
+                    if (element.tagName === 'IMG' && key === 'hero_alt_text') {
+                        element.alt = data[key];
+                    } else {
+                        element.innerHTML = data[key];
+                    }
                 }
             });
 
             skillsGrid.innerHTML = ''; 
             data.skills.forEach(skill => {
                 const skillEl = document.createElement('div');
-                skillEl.className = 'flex flex-col items-center text-center p-4 bg-white dark:bg-slate-700/50 rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300';
+                skillEl.className = 'flex flex-col items-center text-center p-4 bg-white dark:bg-slate-700/50 rounded-lg shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300';
+                skillEl.setAttribute('data-qualification-tag', skill.qualificationTags ? skill.qualificationTags.join(' ') : '');
                 skillEl.innerHTML = `<div class="mb-3">${skill.icon}</div><p class="font-semibold">${skill.text}</p>`;
                 skillsGrid.appendChild(skillEl);
             });
@@ -337,8 +450,9 @@
                 const expEl = document.createElement('div');
                 expEl.className = 'timeline-item relative pb-10';
                 expEl.setAttribute('data-aos', 'fade-left');
+                expEl.setAttribute('data-qualification-tag', exp.qualificationTags ? exp.qualificationTags.join(' ') : '');
                 expEl.innerHTML = `
-                    <div class="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-md border border-slate-200 dark:border-slate-700">
+                    <div class="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-md border border-slate-200 dark:border-slate-700 hover:shadow-lg transition-shadow duration-300">
                         <p class="text-sm text-slate-500 dark:text-slate-400 font-semibold">${exp.date}</p>
                         <h3 class="text-xl font-bold text-teal-600 dark:text-teal-400 mt-1">${exp.title}</h3>
                         <p class="text-md font-semibold text-slate-700 dark:text-slate-300">${exp.company}</p>
@@ -350,7 +464,7 @@
             certificationsList.innerHTML = '';
             data.certifications.forEach(cert => {
                 const certEl = document.createElement('div');
-                certEl.className = 'bg-white dark:bg-slate-700 p-4 rounded-xl shadow-md';
+                certEl.className = 'bg-white dark:bg-slate-700 p-4 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300';
                 let innerHTML = `
                     <h4 class="font-bold text-slate-800 dark:text-white">${cert.name}</h4>
                     <p class="text-sm text-teal-600 dark:text-teal-400 font-semibold">${cert.from}</p>
@@ -387,6 +501,7 @@
             populateContent(lang);
             localStorage.setItem('preferredLang', lang);
             AOS.refresh();
+            applyFilter(currentActiveFilterTag); // Re-apply filter after content repopulation
         }
 
         function toggleMobileMenu() {
@@ -401,12 +516,12 @@
         
         AOS.init({
             duration: 800,
-            once: false,
+            once: false, // Animation triggers every time element scrolls into view
         });
 
         langSwitcher.addEventListener('click', () => {
             const newLang = htmlEl.lang === 'ar' ? 'en' : 'ar';
-            setLanguage(newLang);
+            setLanguage(newLang); // This will call populateContent, which now calls applyFilter
         });
 
         mobileMenuButton.addEventListener('click', toggleMobileMenu);
@@ -414,6 +529,20 @@
         document.querySelectorAll('.mobile-menu-link').forEach(link => {
             link.addEventListener('click', toggleMobileMenu);
         });
+
+        // Filter button event listeners
+        // Must be set up after initial populateContent, or delegate from a static parent
+        // For simplicity, this will re-query after initial population
+        function setupFilterButtons() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const selectedTag = button.dataset.filterTag;
+                    applyFilter(selectedTag);
+                });
+            });
+        }
+
 
         window.addEventListener('scroll', () => {
             const header = document.getElementById('header');
@@ -425,7 +554,19 @@
         });
         
         const initialLang = localStorage.getItem('preferredLang') || 'ar';
-        setLanguage(initialLang);
+        setLanguage(initialLang); // This calls populateContent, which calls applyFilter
+        setupFilterButtons(); // Setup filter button listeners after initial content is loaded
+        applyFilter('all'); // Ensure initial state is "Show All"
+
+        const aiChatbotButton = document.getElementById('ai-chatbot-button');
+        if (aiChatbotButton) {
+            aiChatbotButton.addEventListener('click', () => {
+                const currentLang = document.documentElement.lang || 'ar';
+                const alertMessage = siteData[currentLang]?.ai_coming_soon_alert || "This feature is coming soon!";
+                alert(alertMessage);
+            });
+        }
+
     });
     </script>
 </body>
